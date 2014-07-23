@@ -1,0 +1,41 @@
+{
+  "name": "task-runner",
+  "version": "1.0.0",
+  "description": "Task-runner is a node UI framework for task execution. Developer can only focus on the task logic.",
+  "main": "index.js",
+  "files": [
+      "index.js",
+      "libs"
+  ],
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/leftstick/task-runner.git"
+  },
+  "keywords": [
+      "terminal-menu",
+      "task",
+      "execution"
+  ],
+  "author": {
+      "name": "Howard.Zuo",
+      "email": "leftstick@qq.com",
+      "url": "https://github.com/leftstick"
+  },
+  "license": "MIT",
+  "bugs": {
+      "url": "https://github.com/leftstick/task-runner/issues"
+  },
+  "homepage": "https://github.com/leftstick/task-runner",
+  "dependencies": {
+      "chalk": "^0.5.1",
+      "class-extend": "^0.1.1",
+      "colors-tmpl": "^0.1.0",
+      "lodash": "^2.4.1",
+      "q": "^1.0.1",
+      "terminal-menu": "^0.3.2"
+  },
+  "engineStrict": true,
+  "engines": {
+      "node": ">= 0.10"
+  }
+}
