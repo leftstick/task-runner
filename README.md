@@ -86,7 +86,66 @@ Type: `String`
 
 The location of where the tasks placed.
 
+### TaskRunner.Base ###
 
+Your own task should extend from it.
+
+```JavaScript
+var Task = TaskRunner.Base.extend({
+    id: 'helloTask',
+    name: 'This is only a hello world task',
+    priority: 1,
+    run: function(cons) {
+        //Task has to be asynchronous, otherwise, you won't receive the finish/error event
+        setTimeout(function() {
+            logger.warn('hello, world!!');
+            cons();
+        });
+    }
+});
+```
+
+### TaskRunner.logger ###
+
+Print stuff to the terminal instead of the original `console`.
+
+```JavaScript
+var logger = TaskRunner.logger;
+
+logger.info('information');          //print in white
+logger.success('congratulation');    //print in green
+logger.warn('warning');              //print in yellow
+logger.error('error');               //print in red
+```
+
+### TaskRunner.shell(commands, variables) ###
+
+#### commands
+Type: `Array`
+
+Commands to pass to `new Shell`
+
+##### command
+Type: `String`
+
+The command you'd like to execute. A command can contains variable which will be replaced later before executed by `Shell`, the varible syntax should apply [lodash](http://lodash.com/docs#template)
+
+#### variables
+Type: `Object`
+
+The object used to replace the variable in command by using [lodash](http://lodash.com/docs#template)'s template engine.
+
+```JavaScript
+var Shell = TaskRunner.shell;
+
+new Shell(['ls -l *<%= suffix %>'], {
+                suffix: '.js'
+    }).start().then(function() {
+        cons();
+    }, function(err) {
+        cons(err);
+});
+```
 
 ## LICENSE ##
 
