@@ -90,7 +90,7 @@ var createMenu = function(opts) {
     });
 
     menu.createStream().pipe(process.stdout);
-
+    return emitter;
 };
 
 var TaskRunner = {
