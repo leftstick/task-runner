@@ -3,7 +3,7 @@
 ### Specify the location where the tasks placed ###
 
 ```JavaScript
-var TaskRunner = require('task-runner');
+var TaskRunner = require('terminal-task-runner');
 
 TaskRunner.createMenu({
     title: 'This is Header',
@@ -38,7 +38,7 @@ tasks
 Copy following codes in it:
 
 ```JavaScript
-var TaskRunner = require('task-runner');
+var TaskRunner = require('terminal-task-runner');
 var logger = TaskRunner.logger;
 
 

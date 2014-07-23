@@ -1,4 +1,4 @@
-task-runner
+terminal-task-runner
 ===========
 
 ![](http://img.shields.io/badge/npm_module-v1.0.0-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
@@ -8,24 +8,24 @@ task-runner
 
 ![](https://raw.githubusercontent.com/leftstick/task-runner/master/docs/img/example.png)
 
-Task-runner is a node UI framework for task execution. Developer can only focus on the task logic. Framework will generate the terminal menu for you.
+Terminal-task-runner is a node UI framework for task execution. Developer can only focus on the task logic. Framework will generate the terminal menu for you.
 
-**task-runner** is now used by [sero-cli](https://github.com/leftstick/Sero-cli).
+**terminal-task-runner** is now used by [sero-cli](https://github.com/leftstick/Sero-cli).
 
 ## High-level overview ##
 
-`task-runner` is runner system with a lovely terminal UI. Which also provide some cool features to ease the way of implementing tasks. 
+`terminal-task-runner` is runner system with a lovely terminal UI. Which also provide some cool features to ease the way of implementing tasks. 
 
 ## Installation ##
 
 ```shell
-npm install task-runner --save
+npm install terminal-task-runner --save
 ```
 
 ## Usage ##
 
 ```JavaScript
-var TaskRunner = require('task-runner');
+var TaskRunner = require('terminal-task-runner');
 
 TaskRunner.createMenu({
     title: 'This is Header',
