@@ -37,6 +37,9 @@ By doing above, you've created a very simple terminal menu as following:
 
 ![](https://raw.githubusercontent.com/leftstick/task-runner/master/docs/img/step01.png)
 
+[How to write your own task](./docs/how_to_write_task.md)
+> Welcome to play with the example as your skeleton. 
+
 
 ## API ##
 
@@ -83,11 +86,6 @@ Type: `String`
 
 The location of where the tasks placed.
 
-
-[How to write your own task](./docs/how_to_write_task.md)
-
-
-Welcome to play with the example as your skeleton. 
 
 
 ## LICENSE ##
