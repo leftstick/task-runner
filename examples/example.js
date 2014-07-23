@@ -8,5 +8,6 @@ TaskRunner.createMenu({
     title: 'This is Header',
     subtitle: 'here is subTitle',
     taskDir: path.resolve(__dirname, 'tasks'),
-    helpFile: path.resolve(__dirname, 'help.txt')
+    helpFile: path.resolve(__dirname, 'help.txt'),
+    version: 'v1.0.1'
 });

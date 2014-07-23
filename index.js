@@ -14,7 +14,8 @@ var defaults = {
     subtitle: '-----------------------------------------',
     width: 100,
     x: 3,
-    y: 2
+    y: 2,
+    version: ''
 };
 
 var exit = function(code) {
@@ -38,7 +39,7 @@ var createMenu = function(opts) {
     //clean up the terminal
     menu.reset();
     //display the title
-    menu.write(chalk.bold(options.title) + '\n');
+    menu.write(chalk.bold(options.title.toUpperCase()) + utils.repeat(' ', options.width - options.title.length - options.version.length - 2) + chalk.dim(options.version) + '\n');
     //display the subtitle
     menu.write(chalk.italic(options.subtitle) + '\n');
     //display start separator
