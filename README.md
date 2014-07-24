@@ -1,7 +1,7 @@
 terminal-task-runner
 ===========
 
-![](http://img.shields.io/badge/npm_module-v1.0.3-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
+![](http://img.shields.io/badge/npm_module-v1.0.4-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
 ![](http://img.shields.io/badge/build-passing-brightgreen.svg?style=flat)
 
 > Terminal task execution system
@@ -153,6 +153,11 @@ new Shell(['ls -l *<%= suffix %>'], {
 });
 ```
 
+
+### TaskRunner.Q ###
+
+[Q](https://github.com/kriskowal/q) as default promise implementation is recommended.
+
 ## LICENSE ##
 
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
+[MIT License](https://raw.githubusercontent.com/leftstick/task-runner/master/LICENSE)

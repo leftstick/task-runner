@@ -3,6 +3,7 @@ var fs = require('fs');
 var _ = require('lodash');
 var termianlMenu = require('terminal-menu');
 var chalk = require('chalk');
+var Q = require('q');
 var BaseTask = require('./libs/BaseTask');
 var TaskManager = require('./libs/TaskManager');
 var utils = require('./libs/Utils');
@@ -98,7 +99,8 @@ var TaskRunner = {
     Base: BaseTask,
     logger: logger,
     createMenu: createMenu,
-    shell: Shell
+    shell: Shell,
+    Q: Q
 };
 
 
