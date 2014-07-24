@@ -4,7 +4,7 @@ var EventEmitter = require('events').EventEmitter;
 var _ = require('lodash');
 var utils = require('./Utils');
 
-var finishHandler = function(err) {
+var finishHandler = function (err) {
     var args = Array.prototype.slice.call(arguments, 1);
     if (!err) {
         args.unshift('finish');
@@ -16,12 +16,13 @@ var finishHandler = function(err) {
     EventEmitter.prototype.emit.apply(this.emitter, args);
 };
 
-var TaskManager = function(opts) {
+var TaskManager = function (opts) {
     this.taskDir = opts.taskDir;
+    this.preferenceMgr = opts.preferenceMgr;
     this.emitter = new EventEmitter();
 };
 
-TaskManager.prototype.getTaskList = function() {
+TaskManager.prototype.getTaskList = function () {
     var _this = this;
     if (this._tasks) {
         return this._tasks;
@@ -31,26 +32,26 @@ TaskManager.prototype.getTaskList = function() {
     }
     var taskFolders = fs.readdirSync(this.taskDir);
 
-    this._tasks = taskFolders.map(function(file, index) {
+    this._tasks = taskFolders.map(function (file, index) {
         var p = path.resolve(_this.taskDir, file, 'Task');
         var TaskMod = require(p);
-        var task = new TaskMod(p);
+        var task = new TaskMod(p, _this.preferenceMgr);
         return task;
     });
 
-    this._tasks = _.sortBy(_this._tasks, function(task) {
-        return task.priority;
+    this._tasks = _.sortBy(_this._tasks, function (task) {
+        return task.position;
     });
 
     return this._tasks;
 };
 
-TaskManager.prototype.getTaskByIndex = function(index) {
+TaskManager.prototype.getTaskByIndex = function (index) {
     return this._tasks[index];
 };
 
-TaskManager.prototype.run = function(taskId) {
-    var task = _.find(this._tasks, function(task) {
+TaskManager.prototype.run = function (taskId) {
+    var task = _.find(this._tasks, function (task) {
         return task.id === taskId;
     });
 

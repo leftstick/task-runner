@@ -17,14 +17,16 @@ var defaults = {
     width: 100,
     x: 3,
     y: 2,
-    version: ''
+    version: '',
+    helpFile: undefined,
+    preferenceMgr: undefined
 };
 
-var exit = function(code) {
+var exit = function (code) {
     process.exit(code);
 };
 
-var createMenu = function(opts) {
+var createMenu = function (opts) {
     var options = opts || {};
     options = _.defaults(options, defaults);
 
@@ -48,7 +50,7 @@ var createMenu = function(opts) {
     menu.write(utils.repeat('-', options.width) + '\n');
 
 
-    taskMgr.getTaskList().forEach(function(task, index) {
+    taskMgr.getTaskList().forEach(function (task, index) {
         menu.add(chalk.bold('»') + ' ' + task.name + utils.repeat(' ', options.width - task.name.length - 1));
     });
 
@@ -59,7 +61,7 @@ var createMenu = function(opts) {
     //display exit
     menu.add(chalk.bold('EXIT'));
 
-    menu.on('select', function(label, index) {
+    menu.on('select', function (label, index) {
         var name = chalk.stripColor(label).replace(/(^»?\s+)/g, '');
 
         menu.y = 0;
@@ -81,11 +83,11 @@ var createMenu = function(opts) {
 
         var runner = taskMgr.run(task.id);
 
-        runner.on('finish', function() {
+        runner.on('finish', function () {
             logger.success('finish: ', task.name);
         });
 
-        runner.on('error', function(err) {
+        runner.on('error', function (err) {
             logger.error('failed: ', err);
             exit(0);
         });
@@ -102,7 +104,9 @@ var TaskRunner = {
     createMenu: createMenu,
     shell: Shell,
     Q: Q,
-    PreferenceMgr: PreferenceMgr
+    getPrefMgr: function (prefName) {
+        return new PreferenceMgr(prefName);
+    }
 };
 
 

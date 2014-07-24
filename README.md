@@ -163,6 +163,18 @@ new Shell(['ls -l *<%= suffix %>'], {
 
 [Q](https://github.com/kriskowal/q) as default promise implementation is recommended.
 
+### TaskRunner.getPrefMgr(prefName) ###
+
+The instance of PreferenceMgr returned.
+
+#### prefName
+Type: `string`
+
+The preference file name. For example: `.sero`
+
+[How to play with PreferenceMgr](./docs/how_to_use_prefmgr.md)
+
+
 ## LICENSE ##
 
 [MIT License](https://raw.githubusercontent.com/leftstick/task-runner/master/LICENSE)
