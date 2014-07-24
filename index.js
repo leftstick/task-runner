@@ -8,6 +8,7 @@ var BaseTask = require('./libs/BaseTask');
 var TaskManager = require('./libs/TaskManager');
 var utils = require('./libs/Utils');
 var Shell = require('./libs/Shell');
+var PreferenceMgr = require('./libs/PreferenceMgr');
 var logger = utils.logger;
 
 var defaults = {
@@ -100,7 +101,8 @@ var TaskRunner = {
     logger: logger,
     createMenu: createMenu,
     shell: Shell,
-    Q: Q
+    Q: Q,
+    PreferenceMgr: PreferenceMgr
 };
 
 
