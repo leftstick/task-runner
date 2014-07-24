@@ -6,6 +6,21 @@ var fs = require('fs');
 
 var isWin = os.platform().indexOf('win') > -1;
 
+var convertInput = function(parameters) {
+    var args = Array.prototype.slice.call(parameters);
+    args = args.map(function(value, index) {
+        if (typeof value === 'object') {
+            try {
+                return JSON.stringify(value);
+            } catch (e) {
+                return value.toString();
+            }
+        }
+        return value;
+    });
+    return args;
+};
+
 
 var Utils = {
     isWindows: isWin,
@@ -26,19 +41,19 @@ var Utils = {
     },
     logger: {
         success: function() {
-            var args = Array.prototype.slice.call(arguments);
-            console.log(chalk.green.apply(undefined, args));
+            var args = convertInput(arguments);
+            console.log(chalk.bold.green.apply(undefined, args));
         },
         info: function() {
-            var args = Array.prototype.slice.call(arguments);
+            var args = convertInput(arguments);
             console.log(chalk.white.apply(undefined, args));
         },
         warn: function() {
-            var args = Array.prototype.slice.call(arguments);
-            console.log(chalk.yellow.apply(undefined, args));
+            var args = convertInput(arguments);
+            console.log(chalk.bold.yellow.apply(undefined, args));
         },
         error: function() {
-            var args = Array.prototype.slice.call(arguments);
+            var args = convertInput(arguments);
             console.log(chalk.bold.red.apply(undefined, args));
         }
     },

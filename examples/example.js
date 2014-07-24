@@ -9,5 +9,5 @@ TaskRunner.createMenu({
     subtitle: 'here is subTitle',
     taskDir: path.resolve(__dirname, 'tasks'),
     helpFile: path.resolve(__dirname, 'help.txt'),
-    version: 'v1.0.4'
+    version: 'v1.0.5'
 });

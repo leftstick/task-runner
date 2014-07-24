@@ -1,7 +1,7 @@
 terminal-task-runner
 ===========
 
-![](http://img.shields.io/badge/npm_module-v1.0.4-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
+![](http://img.shields.io/badge/npm_module-v1.0.5-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
 ![](http://img.shields.io/badge/build-passing-brightgreen.svg?style=flat)
 
 > Terminal task execution system
@@ -85,6 +85,11 @@ top-left corner y offset.
 Type: `String`
 
 The location of where the tasks placed.
+
+#### options.helpFile
+Type: `String`
+
+The location of where the help file placed. A help file should be written in [colors-tmpl](https://github.com/rvagg/colors-tmpl) style.
 
 #### options.version
 Type: `String`
