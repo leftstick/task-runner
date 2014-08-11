@@ -19,6 +19,7 @@ var finishHandler = function(err) {
 
 var TaskManager = function(opts) {
     this.taskDir = opts.taskDir;
+    this.taskList = opts.taskList;
     this.preferenceMgr = opts.preferenceMgr;
     this.emitter = new EventEmitter();
 };
@@ -33,12 +34,9 @@ TaskManager.prototype.getTaskList = function() {
     }
 
     var deferred = utils.deferred();
-    fs.readdir(this.taskDir, function(err, files) {
-        if (err) {
-            deferred.reject(err);
-            return;
-        }
-        _this._tasks = files.map(function(file, index) {
+
+    if (this.taskList) {
+        _this._tasks = this.taskList.map(function(file, index) {
             var p = path.resolve(_this.taskDir, file, 'Task');
             var TaskMod = require(p);
             var task = new TaskMod(p, _this.preferenceMgr);
@@ -50,8 +48,32 @@ TaskManager.prototype.getTaskList = function() {
         });
 
         deferred.resolve(_this._tasks);
+    } else {
 
-    });
+        fs.readdir(this.taskDir, function(err, files) {
+            if (err) {
+                deferred.reject(err);
+                return;
+            }
+            _this._tasks = files.map(function(file, index) {
+                var p = path.resolve(_this.taskDir, file, 'Task');
+                var TaskMod = require(p);
+                var task = new TaskMod(p, _this.preferenceMgr);
+                return task;
+            });
+
+            _this._tasks = _.sortBy(_this._tasks, function(task) {
+                return task.position;
+            });
+
+            deferred.resolve(_this._tasks);
+
+        });
+
+    }
+
+
+
 
     return deferred.promise;
 };

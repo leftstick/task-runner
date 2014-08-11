@@ -1,7 +1,7 @@
 terminal-task-runner
 ===========
 
-![](http://img.shields.io/badge/npm_module-v1.0.7-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
+![](http://img.shields.io/badge/npm_module-v1.1.0-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
 ![](http://img.shields.io/badge/build-passing-brightgreen.svg?style=flat)
 
 > Terminal task execution system
@@ -85,6 +85,12 @@ top-left corner y offset.
 Type: `String`
 
 The location of where the tasks placed.
+
+#### options.taskList
+Type: `array`
+Optional: true
+
+The the list of task folders. If not specified, `task-runner` will go through all the folders under `taskDir`.
 
 #### options.helpFile
 Type: `String`
