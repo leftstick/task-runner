@@ -1,0 +1,17 @@
+{
+    "browser": true,
+    "esnext": true,
+    "globals": {
+        "angular": true,
+        "define": true,
+        "require": true,
+        "module": true,
+        "console": true,
+        "process": true
+    },
+    "globalstrict": true,
+    "quotmark": true,
+    "undef": true,
+    "unused": true,
+    "sub": true
+}

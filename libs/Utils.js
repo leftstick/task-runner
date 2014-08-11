@@ -1,8 +1,10 @@
+'use strict';
 var path = require('path');
 var chalk = require('chalk');
 var os = require('os');
 var colorsTmpl = require('colors-tmpl');
 var fs = require('fs');
+var Q = require('q');
 
 var isWin = os.platform().indexOf('win') > -1;
 
@@ -19,6 +21,23 @@ var convertInput = function(parameters) {
         return value;
     });
     return args;
+};
+
+var wrapperPromise = function(promise) {
+    promise.success = function(fn) {
+        promise.then(function(data) {
+            fn(data);
+        });
+        return promise;
+    };
+
+    promise.error = function(fn) {
+        promise.then(null, function(err) {
+            fn(err);
+        });
+        return promise;
+    };
+
 };
 
 
@@ -71,6 +90,19 @@ var Utils = {
             throw e;
         }
 
+    },
+    deferred: function() {
+        var deferred = Q.defer();
+        var promise = deferred.promise;
+        wrapperPromise(promise);
+        return deferred;
+    },
+    promiseWith: function(value) {
+        var promise = Q.fcall(function() {
+            return value;
+        });
+        wrapperPromise(promise);
+        return promise;
     }
 };
 
