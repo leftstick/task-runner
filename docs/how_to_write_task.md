@@ -8,7 +8,8 @@ var TaskRunner = require('terminal-task-runner');
 TaskRunner.createMenu({
     title: 'This is Header',
     subtitle: 'here is subTitle',
-    taskDir: '/d/users/tasks'
+    taskDir: '/d/users/tasks',
+    preferenceName: '.sero'
 });
 ```
 
@@ -66,3 +67,11 @@ module.exports = Task;
 | name | string | Yes | the description display on the terminal ui |
 | priority | number | Yes | indicates the position on the terminal ui of the task |
 | run | function | Yes | the callback while user selected the task. One argument `cons` will be passed into this function, once the task executed completely, you should call `cons`. If error occurs, call `cons` with the err as argument. Note: the `run` callback has to be asynchronous, otherwise, you won't receive the finish/error event |
+
+There are also some build-in functions can be used within `task`, which may helps developer ease their work.
+
+[How to play with prompt](./how_to_use_prompt.md)
+[How to play with preferenceManager](./how_to_use_prefmgr.md)
+
+
+ 

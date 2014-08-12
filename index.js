@@ -9,7 +9,7 @@ var BaseTask = require('./libs/BaseTask');
 var TaskManager = require('./libs/TaskManager');
 var utils = require('./libs/Utils');
 var Shell = require('./libs/Shell');
-var PreferenceMgr = require('./libs/PreferenceMgr');
+
 var logger = utils.logger;
 
 var defaults = {
@@ -20,7 +20,7 @@ var defaults = {
     y: 2,
     version: '',
     helpFile: undefined,
-    preferenceMgr: undefined
+    preferenceName: undefined
 };
 
 var exit = function(code) {
@@ -110,10 +110,7 @@ var TaskRunner = {
     logger: logger,
     createMenu: createMenu,
     shell: Shell,
-    Q: Q,
-    getPrefMgr: function(prefName) {
-        return new PreferenceMgr(prefName);
-    }
+    Q: Q
 };
 
 

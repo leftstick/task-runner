@@ -14,5 +14,5 @@ TaskRunner.createMenu({
     taskList: taskList,
     helpFile: path.resolve(__dirname, 'help.txt'),
     version: pkg.version,
-    preferenceMgr: TaskRunner.getPrefMgr('.runner')
+    preferenceName: '.runner'
 });

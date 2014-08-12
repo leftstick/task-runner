@@ -1,12 +1,12 @@
 var path = require('path');
 var fs = require('fs');
-var _ = require('lodash');
+
 
 
 var HOME = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
 
 
-var readJson = function (filePath) {
+var readJson = function(filePath) {
     var content;
     var pref;
 
@@ -14,29 +14,30 @@ var readJson = function (filePath) {
         content = fs.readFileSync(filePath, {
             encoding: 'utf8'
         });
-    } catch (e) {
+    } catch ( e ) {
         return;
     }
 
     try {
         pref = JSON.parse(content);
-    } catch (e) {
+    } catch ( e ) {
         return {};
     }
 
     return pref;
 };
 
-var writeJson = function (filePath, data) {
+var writeJson = function(filePath, data) {
     var content = JSON.stringify(data);
     fs.writeFileSync(filePath, content);
 };
 
 
-var savePref = function (prefs) {
+var savePref = function(prefs) {
     if (!prefs || typeof prefs !== 'object') {
         throw new Error('prefs must be a literal object');
     }
+    var _ = require('lodash');
     var data = _.defaults(prefs, this.preferences);
     this.preferences = data;
     if (fs.existsSync(this.localFile)) {
@@ -48,7 +49,8 @@ var savePref = function (prefs) {
 };
 
 
-var removePref = function (keys) {
+var removePref = function(keys) {
+    var _ = require('lodash');
     if (!_.isArray(keys)) {
         throw new Error('keys must be array');
     }
@@ -63,7 +65,7 @@ var removePref = function (keys) {
 
 
 
-var PreferenceMgr = function (fileName) {
+var PreferenceMgr = function(fileName) {
     if (!fileName || typeof fileName !== 'string') {
         throw new Error('fileName must be string');
     }
@@ -80,15 +82,15 @@ var PreferenceMgr = function (fileName) {
 
 };
 
-PreferenceMgr.prototype.put = function (prefs) {
+PreferenceMgr.prototype.put = function(prefs) {
     savePref.bind(this)(prefs);
 };
 
-PreferenceMgr.prototype.remove = function (keys) {
+PreferenceMgr.prototype.remove = function(keys) {
     removePref.bind(this)(keys);
 };
 
-PreferenceMgr.prototype.get = function (key, defaultValue) {
+PreferenceMgr.prototype.get = function(key, defaultValue) {
     return this.preferences[key] || defaultValue || '';
 };
 

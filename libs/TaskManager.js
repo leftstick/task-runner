@@ -17,10 +17,30 @@ var finishHandler = function(err) {
     EventEmitter.prototype.emit.apply(this.emitter, args);
 };
 
+
+var resolveTasks = function(files, deferred) {
+    var _this = this;
+    _this._tasks = files.map(function(file, index) {
+        var p = path.resolve(_this.taskDir, file, 'Task');
+        var TaskMod = require(p);
+        var task = new TaskMod({
+            path: p,
+            preferenceName: _this.preferenceName
+        });
+        return task;
+    });
+
+    _this._tasks = _.sortBy(_this._tasks, function(task) {
+        return task.position;
+    });
+
+    deferred.resolve(_this._tasks);
+};
+
 var TaskManager = function(opts) {
     this.taskDir = opts.taskDir;
     this.taskList = opts.taskList;
-    this.preferenceMgr = opts.preferenceMgr;
+    this.preferenceName = opts.preferenceName;
     this.emitter = new EventEmitter();
 };
 
@@ -36,18 +56,7 @@ TaskManager.prototype.getTaskList = function() {
     var deferred = utils.deferred();
 
     if (this.taskList) {
-        _this._tasks = this.taskList.map(function(file, index) {
-            var p = path.resolve(_this.taskDir, file, 'Task');
-            var TaskMod = require(p);
-            var task = new TaskMod(p, _this.preferenceMgr);
-            return task;
-        });
-
-        _this._tasks = _.sortBy(_this._tasks, function(task) {
-            return task.position;
-        });
-
-        deferred.resolve(_this._tasks);
+        resolveTasks.bind(this)(this.taskList, deferred);
     } else {
 
         fs.readdir(this.taskDir, function(err, files) {
@@ -55,25 +64,11 @@ TaskManager.prototype.getTaskList = function() {
                 deferred.reject(err);
                 return;
             }
-            _this._tasks = files.map(function(file, index) {
-                var p = path.resolve(_this.taskDir, file, 'Task');
-                var TaskMod = require(p);
-                var task = new TaskMod(p, _this.preferenceMgr);
-                return task;
-            });
 
-            _this._tasks = _.sortBy(_this._tasks, function(task) {
-                return task.position;
-            });
-
-            deferred.resolve(_this._tasks);
-
+            resolveTasks.bind(_this)(files, deferred);
         });
 
     }
-
-
-
 
     return deferred.promise;
 };

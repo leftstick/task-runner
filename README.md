@@ -1,7 +1,7 @@
 terminal-task-runner
 ===========
 
-![](http://img.shields.io/badge/npm_module-v1.1.0-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
+![](http://img.shields.io/badge/npm_module-v1.2.0-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
 ![](http://img.shields.io/badge/build-passing-brightgreen.svg?style=flat)
 
 > Terminal task execution system
@@ -103,6 +103,13 @@ Default: ''
 
 The version will be displayed at the right of the title.
 
+#### options.preferenceName
+Type: `String`
+
+The preference file name will be used to store the information. For example: `.sero`
+
+[How to play with PreferenceMgr](./docs/how_to_use_prefmgr.md)
+
 ### TaskRunner.Base ###
 
 Your own task should extend from it.
@@ -168,17 +175,6 @@ new Shell(['ls -l *<%= suffix %>'], {
 ### TaskRunner.Q ###
 
 [Q](https://github.com/kriskowal/q) as default promise implementation is recommended.
-
-### TaskRunner.getPrefMgr(prefName) ###
-
-The instance of PreferenceMgr returned.
-
-#### prefName
-Type: `string`
-
-The preference file name. For example: `.sero`
-
-[How to play with PreferenceMgr](./docs/how_to_use_prefmgr.md)
 
 
 ## LICENSE ##

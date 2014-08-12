@@ -1,18 +1,18 @@
 ## How to play with PreferenceMgr ##
 
-There are two places from where you may find the `prefName`.
+There are two places from where you may find the `preferenceName`.
 
 1. `current working directory`
 2. `HOME`
 
-Once the applicaton launched, `PreferenceMgr` loads preferences from `./prefName` if exists, otherwise, loads from `HOME/prefName`.
+Once the applicaton launched, `PreferenceMgr` loads preferences from `./preferenceName` if exists, otherwise, loads from `HOME/preferenceName`.
 
 The same concept apply on saving preferences.
 
 
 ### Usage ###
 
-You can only use `PreferenceMgr` within the `Task` by `this`.
+You can only use `PreferenceMgr` within the `Task` by `this` identifer.
 
 ```JavaScript
 var Task = TaskRunner.Base.extend({
