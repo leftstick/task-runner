@@ -70,8 +70,8 @@ module.exports = Task;
 
 There are also some build-in functions can be used within `task`, which may helps developer ease their work.
 
-[How to play with prompt](./how_to_use_prompt.md)
-[How to play with preferenceManager](./how_to_use_prefmgr.md)
+- [How to play with prompt](./how_to_use_prompt.md)
+- [How to play with preferenceManager](./how_to_use_prefmgr.md)
 
 
  
