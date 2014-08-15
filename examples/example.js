@@ -10,6 +10,7 @@ var taskList = require('./taskList');
 TaskRunner.createMenu({
     title: 'This is Header',
     subtitle: 'here is subTitle',
+    helpTxt: '帮助',
     taskDir: path.resolve(__dirname, 'tasks'),
     taskList: taskList,
     helpFile: path.resolve(__dirname, 'help.txt'),

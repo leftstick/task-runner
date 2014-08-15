@@ -74,11 +74,11 @@ var createMenu = function(opts) {
             menu.reset();
             menu.close();
 
-            if (name === 'EXIT') {
+            if (name === options.exitTxt) {
                 return emitter.emit('exit');
             }
 
-            if (name === 'HELP') {
+            if (name === options.helpTxt) {
                 utils.printFile(options.helpFile);
                 return;
             }
