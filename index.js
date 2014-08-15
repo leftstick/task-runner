@@ -15,6 +15,8 @@ var logger = utils.logger;
 var defaults = {
     title: '===============================================',
     subtitle: '-----------------------------------------',
+    helpTxt: 'HELP',
+    exitTxt: 'EXIT',
     width: 100,
     x: 3,
     y: 2,
@@ -45,7 +47,7 @@ var createMenu = function(opts) {
         //clean up the terminal
         menu.reset();
         //display the title
-        menu.write(chalk.bold(options.title.toUpperCase()) + utils.repeat(' ', options.width - options.title.length - options.version.length - 2) + chalk.dim(options.version) + '\n');
+        menu.write(chalk.bold(options.title.toUpperCase()) + utils.repeat(' ', options.width - utils.length(options.title, 'utf-8') - options.version.length - 2) + chalk.dim(options.version) + '\n');
         //display the subtitle
         menu.write(chalk.italic(options.subtitle) + '\n');
         //display start separator
@@ -53,18 +55,20 @@ var createMenu = function(opts) {
 
 
         tasks.forEach(function(task, index) {
-            menu.add(chalk.bold('»') + ' ' + task.name + utils.repeat(' ', options.width - task.name.length - 1));
+            menu.add(chalk.bold('»') + ' ' + task.name + utils.repeat(' ', options.width - utils.length(task.name) - 3));
         });
 
         //display end separator
         menu.write(utils.repeat('-', options.width) + '\n');
         //display help
-        menu.add(chalk.bold('HELP'));
+        if (fs.existsSync(options.helpFile)) {
+            menu.add(chalk.bold(options.helpTxt) + utils.repeat(' ', options.width - utils.length(options.helpTxt)));
+        }
         //display exit
-        menu.add(chalk.bold('EXIT'));
+        menu.add(chalk.bold(options.exitTxt) + utils.repeat(' ', options.width - utils.length(options.exitTxt)));
 
         menu.on('select', function(label, index) {
-            var name = chalk.stripColor(label).replace(/(^»?\s+)/g, '');
+            var name = chalk.stripColor(label).replace(/(^»?\s+)|(\s+$)/g, '');
 
             menu.y = 0;
             menu.reset();
@@ -75,12 +79,9 @@ var createMenu = function(opts) {
             }
 
             if (name === 'HELP') {
-                if (fs.existsSync(options.helpFile)) {
-                    utils.printFile(options.helpFile);
-                }
+                utils.printFile(options.helpFile);
                 return;
             }
-
             var task = taskMgr.getTaskByIndex(index);
 
             var runner = taskMgr.run(task.id);

@@ -14,7 +14,7 @@ var convertInput = function(parameters) {
         if (typeof value === 'object') {
             try {
                 return JSON.stringify(value);
-            } catch (e) {
+            } catch ( e ) {
                 return value.toString();
             }
         }
@@ -51,6 +51,17 @@ var Utils = {
     repeat: function(ch, sz) {
         return new Array(sz + 1).join(ch);
     },
+    length: function(str) {
+        var len = 0;
+        for (var i = 0; i < str.length; i++) {
+            if (str.charCodeAt(i) > 256) {
+                len += 2;
+                continue;
+            }
+            len += 1;
+        }
+        return len;
+    },
     convertPath: function(path) {
         var p = path;
         if (isWin) {
@@ -86,7 +97,7 @@ var Utils = {
             contents = colorsTmpl(contents);
 
             console.log(contents);
-        } catch (e) {
+        } catch ( e ) {
             throw e;
         }
 

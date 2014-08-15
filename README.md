@@ -1,8 +1,9 @@
 terminal-task-runner
 ===========
+[![NPM version][npm-image]][npm-url]
+![][david-url]
+![][travis-url]
 
-![](http://img.shields.io/badge/npm_module-v1.2.0-green.svg?style=flat)  ![](http://img.shields.io/badge/dependencies-latest-yellowgreen.svg?style=flat)
-![](http://img.shields.io/badge/build-passing-brightgreen.svg?style=flat)
 
 > Terminal task execution system
 
@@ -61,6 +62,18 @@ Type: `String`
 Default: `--------------------`
 
 The subtitle displayed below the `title`.
+
+#### options.helpTxt
+Type: `String`
+Default: `HELP`
+
+The text will be displayed if you have set `helpFile`.
+
+#### options.exitTxt
+Type: `String`
+Default: `EXIT`
+
+The text will be displayed at the bottom of the terminal UI.
 
 #### options.width
 Type: `number`
@@ -180,3 +193,9 @@ new Shell(['ls -l *<%= suffix %>'], {
 ## LICENSE ##
 
 [MIT License](https://raw.githubusercontent.com/leftstick/task-runner/master/LICENSE)
+
+
+[npm-url]: https://npmjs.org/package/terminal-task-runner
+[npm-image]: https://badge.fury.io/js/terminal-task-runner.png
+[david-url]:https://david-dm.org/leftstick/task-runner.png
+[travis-url]:https://api.travis-ci.org/leftstick/terminal-task-runner.svg?branch=master
