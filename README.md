@@ -198,4 +198,4 @@ new Shell(['ls -l *<%= suffix %>'], {
 [npm-url]: https://npmjs.org/package/terminal-task-runner
 [npm-image]: https://badge.fury.io/js/terminal-task-runner.png
 [david-url]:https://david-dm.org/leftstick/task-runner.png
-[travis-url]:https://api.travis-ci.org/leftstick/terminal-task-runner.svg?branch=master
+[travis-url]:https://api.travis-ci.org/leftstick/task-runner.svg?branch=master
