@@ -3,7 +3,7 @@ var it = require('mocha').it;
 
 describe('basic test', function() {
 
-    it('should work in any mode', function(done) {
+    it('need to be modified later', function(done) {
         done();
     });
 
