@@ -62,10 +62,10 @@ var createMenu = function(opts) {
         menu.write(utils.repeat('-', options.width) + '\n');
         //display help
         if (fs.existsSync(options.helpFile)) {
-            menu.add(chalk.bold(options.helpTxt) + utils.repeat(' ', options.width - utils.length(options.helpTxt)));
+            menu.add(chalk.bold(options.helpTxt) + utils.repeat(' ', options.width - utils.length(options.helpTxt) - 1));
         }
         //display exit
-        menu.add(chalk.bold(options.exitTxt) + utils.repeat(' ', options.width - utils.length(options.exitTxt)));
+        menu.add(chalk.bold(options.exitTxt) + utils.repeat(' ', options.width - utils.length(options.exitTxt) - 1));
 
         menu.on('select', function(label, index) {
             var name = chalk.stripColor(label).replace(/(^»?\s+)|(\s+$)/g, '');
