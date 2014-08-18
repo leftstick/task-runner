@@ -64,3 +64,8 @@ Type: `array`
 Required: true
 
 The array of `key` you want to remove from `prefName`.
+
+#### this.removeAll() ####
+
+
+Clean the preferences.

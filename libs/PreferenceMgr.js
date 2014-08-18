@@ -63,6 +63,16 @@ var removePref = function(keys) {
     writeJson(this.homeFile, data);
 };
 
+var removeAllPref = function() {
+    var data = {};
+    this.preferences = data;
+    if (fs.existsSync(this.localFile)) {
+        writeJson(this.localFile, data);
+        return;
+    }
+    writeJson(this.homeFile, data);
+};
+
 
 
 var PreferenceMgr = function(fileName) {
@@ -88,6 +98,10 @@ PreferenceMgr.prototype.put = function(prefs) {
 
 PreferenceMgr.prototype.remove = function(keys) {
     removePref.bind(this)(keys);
+};
+
+PreferenceMgr.prototype.removeAll = function() {
+    removeAllPref.bind(this)();
 };
 
 PreferenceMgr.prototype.get = function(key, defaultValue) {

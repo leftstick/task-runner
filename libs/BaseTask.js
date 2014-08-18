@@ -60,6 +60,13 @@ BaseTask.prototype.remove = function(keys) {
     return preferenceMgr.bind(this)().remove(keys);
 };
 
+BaseTask.prototype.removeAll = function() {
+    if (!this.preferenceName) {
+        throw new Error('You haven\'t set preferenceName properly');
+    }
+    return preferenceMgr.bind(this)().removeAll(keys);
+};
+
 BaseTask.prototype.prompt = function(questions, callback) {
     var inquirer = require('inquirer');
     inquirer.prompt(questions, callback);

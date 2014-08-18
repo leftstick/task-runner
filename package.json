@@ -1,13 +1,13 @@
 {
   "name": "terminal-task-runner",
-  "version": "1.3.4",
+  "version": "1.4.0",
   "description": "Task-runner is a node UI framework for task execution. Developer can only focus on the task logic.",
   "main": "index.js",
   "files": [
     "index.js",
     "libs"
   ],
-  "scripts":{
+  "scripts": {
     "test": "mocha --reporter nyan"
   },
   "repository": {
@@ -43,6 +43,7 @@
     "node": ">= 0.10"
   },
   "devDependencies": {
-    "mocha": "^1.21.4"
+    "mocha": "^1.21.4",
+    "should": "^4.0.4"
   }
 }

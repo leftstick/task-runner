@@ -6,8 +6,6 @@ var colorsTmpl = require('colors-tmpl');
 var fs = require('fs');
 var Q = require('q');
 
-var isWin = os.platform().indexOf('win') > -1;
-
 var convertInput = function(parameters) {
     var args = Array.prototype.slice.call(parameters);
     args = args.map(function(value, index) {
@@ -42,12 +40,6 @@ var wrapperPromise = function(promise) {
 
 
 var Utils = {
-    isWindows: isWin,
-    separator: isWin ? '\\' : '/',
-    joinWorkingPath: function(filePath) {
-        var p = filePath.replace(/\//g, this.separator);
-        return path.join('.', p);
-    },
     repeat: function(ch, sz) {
         return new Array(sz + 1).join(ch);
     },
@@ -61,13 +53,6 @@ var Utils = {
             len += 1;
         }
         return len;
-    },
-    convertPath: function(path) {
-        var p = path;
-        if (isWin) {
-            p = p.replace(/\\/g, '\\\\');
-        }
-        return p;
     },
     logger: {
         success: function() {
@@ -90,7 +75,7 @@ var Utils = {
     printFile: function(filePath) {
         var contents;
         try {
-            contents = fs.readFileSync(this.convertPath(filePath), {
+            contents = fs.readFileSync(filePath, {
                 encoding: 'utf8'
             });
 
