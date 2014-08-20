@@ -11,7 +11,7 @@ terminal-task-runner
 
 Terminal-task-runner is a node UI framework for task execution. Developer can only focus on the task logic. Framework will generate the terminal menu for you.
 
-**terminal-task-runner** is now used by [sero-cli](https://github.com/leftstick/Sero-cli).
+**terminal-task-runner** is now used by [sero-cli](https://github.com/leftstick/Sero-cli), [modou-terminal-controller](https://github.com/leftstick/modou-terminal-controller)
 
 ## High-level overview ##
 
