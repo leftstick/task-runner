@@ -1,6 +1,6 @@
 {
   "name": "terminal-task-runner",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Task-runner is a node UI framework for task execution. Developer can only focus on the task logic.",
   "main": "index.js",
   "files": [
@@ -30,15 +30,15 @@
   },
   "homepage": "https://github.com/leftstick/task-runner",
   "dependencies": {
-    "chalk": "^0.5.1",
+    "chalk": "^1.0.0",
     "class-extend": "^0.1.1",
-    "colors-tmpl": "^0.1.0",
-    "inquirer": "^0.6.0",
-    "lodash": "^2.4.1",
-    "q": "^1.0.1",
-    "terminal-menu": "git://github.com/leftstick/terminal-menu.git#848a5df3c60db56d8a215427f91233f1896bcb85"
+    "colors-tmpl": "^1.0.0",
+    "inquirer": "^0.8.3",
+    "lodash": "^3.8.0",
+    "q": "^1.3.0",
+    "terminal-menu": "^2.1.1"
   },
-  "engineStrict": true,
+  "engine-strict": true,
   "engines": {
     "node": ">= 0.10"
   },

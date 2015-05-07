@@ -74,6 +74,7 @@ var createMenu = function(opts) {
             menu.reset();
             menu.close();
 
+
             if (name === options.exitTxt) {
                 return emitter.emit('exit');
             }
@@ -88,6 +89,7 @@ var createMenu = function(opts) {
 
             runner.on('finish', function() {
                 logger.success('finish: ', task.name);
+                process.stdin.end();
             });
 
             runner.on('error', function(err) {
@@ -97,7 +99,13 @@ var createMenu = function(opts) {
 
         });
 
-        menu.createStream().pipe(process.stdout);
+        process.stdin.pipe(menu.createStream()).pipe(process.stdout);
+        process.stdin.setRawMode(true);
+
+        menu.on('close', function() {
+            process.stdin.setRawMode(false);
+            // process.stdin.end();
+        });
     }).error(function(err) {
         logger.error('failed: ', err);
     });

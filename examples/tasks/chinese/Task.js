@@ -9,6 +9,7 @@ var Task = TaskRunner.Base.extend({
     position: 5,
     run: function(cons) {
         logger.warn('您好，世界');
+        cons();
     }
 });
 

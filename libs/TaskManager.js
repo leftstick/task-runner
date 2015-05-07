@@ -87,7 +87,11 @@ TaskManager.prototype.run = function(taskId) {
         throw new Error('Task [' + taskId + '] is not valid.');
     }
 
-    task.run(finishHandler.bind(this));
+    var self = this;
+
+    setTimeout(function() {
+        task.run(finishHandler.bind(self));
+    }, 100);
 
     return this.emitter;
 };

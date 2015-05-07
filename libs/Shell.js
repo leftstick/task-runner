@@ -13,10 +13,9 @@ var Executor = function(cmds, variables) {
     if (variables) {
         this.commands = [];
         _.each(cmds, function(cmd) {
-            this.push(_.template(cmd, variables));
+            this.push(_.template(cmd)(variables));
         }, this.commands);
     }
-
     this._run = function(defer) {
         var _this = this;
         if (!this.hasNext()) {
@@ -48,12 +47,6 @@ Executor.prototype.next = function() {
         if (error) {
             d.reject(error);
             return;
-        }
-
-        if (!stdout) {
-            console.info(cmd);
-        } else {
-            console.log(stdout);
         }
         d.resolve();
     });
