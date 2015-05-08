@@ -104,7 +104,6 @@ var createMenu = function(opts) {
 
         menu.on('close', function() {
             process.stdin.setRawMode(false);
-            // process.stdin.end();
         });
     }).error(function(err) {
         logger.error('failed: ', err);

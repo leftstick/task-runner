@@ -91,7 +91,7 @@ TaskManager.prototype.run = function(taskId) {
 
     setTimeout(function() {
         task.run(finishHandler.bind(self));
-    }, 100);
+    });
 
     return this.emitter;
 };

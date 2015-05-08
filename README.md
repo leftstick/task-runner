@@ -155,7 +155,7 @@ logger.warn('warning');              //print in yellow
 logger.error('error');               //print in red
 ```
 
-### TaskRunner.shell(commands, variables) ###
+### TaskRunner.shell(commands, variables, displayCmdItself) ###
 
 #### commands
 Type: `Array`
@@ -172,12 +172,18 @@ Type: `Object`
 
 The object used to replace the variable in command by using [lodash](http://lodash.com/docs#template)'s template engine.
 
+#### displayCmdItself
+Type: `Boolean`
+
+This option used to determine whether to display the command itself
+
+
 ```JavaScript
 var Shell = TaskRunner.shell;
 
 new Shell(['ls -l *<%= suffix %>'], {
                 suffix: '.js'
-    }).start().then(function() {
+    }, true).start().then(function() {
         cons();
     }, function(err) {
         cons(err);

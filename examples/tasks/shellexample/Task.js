@@ -10,7 +10,7 @@ var Task = TaskRunner.Base.extend({
         //display all the .js files under current working directory
         new Shell(['ls -l *<%= suffix %>'], {
             suffix: '.js'
-        }).start().then(function() {
+        }, true).start().then(function() {
             cons();
         }, function(err) {
             cons(err);

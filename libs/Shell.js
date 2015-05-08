@@ -1,19 +1,28 @@
+'use strict';
+
 var Q = require('q');
 var exec = require('child_process').exec;
 var _ = require('lodash');
 
 
-var Executor = function(cmds, variables) {
+var Executor = function(cmds, variables, displayCmdItself) {
     this.commands = cmds.slice();
+    this.variables = variables;
+    this.displayCmdItself = displayCmdItself;
+    if (typeof variables === 'boolean') {
+        this.variables = undefined;
+        this.displayCmdItself = variables;
+    }
+    var self = this;
 
     if (!_.isArray(this.commands)) {
         throw new Error('Commands has to be an array');
     }
 
-    if (variables) {
+    if (this.variables) {
         this.commands = [];
         _.each(cmds, function(cmd) {
-            this.push(_.template(cmd)(variables));
+            this.push(_.template(cmd)(self.variables));
         }, this.commands);
     }
     this._run = function(defer) {
@@ -41,9 +50,13 @@ Executor.prototype.next = function() {
     var cmd = this.commands.shift();
     var d = Q.defer();
 
+    if (this.displayCmdItself) {
+        console.log(cmd);
+    }
+
     var cp = exec(cmd, {
         maxBuffer: 5000 * 1024
-    }, function(error, stdout, stderr) {
+    }, function(error) {
         if (error) {
             d.reject(error);
             return;
