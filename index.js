@@ -67,12 +67,15 @@ var createMenu = function(opts) {
         //display exit
         menu.add(chalk.bold(options.exitTxt) + utils.repeat(' ', options.width - utils.length(options.exitTxt) - 1));
 
+        var isTaskRunning;
         menu.on('select', function(label, index) {
             var name = chalk.stripColor(label).replace(/(^»?\s+)|(\s+$)/g, '');
 
             menu.y = 0;
             menu.reset();
             menu.close();
+
+            isTaskRunning = false;
 
 
             if (name === options.exitTxt) {
@@ -83,8 +86,10 @@ var createMenu = function(opts) {
                 utils.printFile(options.helpFile);
                 return;
             }
+
             var task = taskMgr.getTaskByIndex(index);
 
+            isTaskRunning = true;
             var runner = taskMgr.run(task.id);
 
             runner.on('finish', function() {
@@ -104,6 +109,9 @@ var createMenu = function(opts) {
 
         menu.on('close', function() {
             process.stdin.setRawMode(false);
+            if (!isTaskRunning) {
+                process.stdin.end();
+            }
         });
     }).error(function(err) {
         logger.error('failed: ', err);
