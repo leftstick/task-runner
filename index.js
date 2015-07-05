@@ -22,7 +22,13 @@ var defaults = {
     y: 2,
     version: '',
     helpFile: undefined,
-    preferenceName: undefined
+    preferenceName: undefined,
+    onFinish: function(id, name) {
+        logger.success('finish: ', name);
+    },
+    onError: function(id, name, err) {
+        logger.error('failed: ', err);
+    }
 };
 
 var exit = function(code) {
@@ -39,11 +45,7 @@ var createMenu = function(opts) {
 
 
     taskMgr.getTaskList().success(function(tasks) {
-        var menu = termianlMenu({
-            width: options.width,
-            x: 3,
-            y: 2
-        });
+        var menu = termianlMenu({width: options.width, x: 3, y: 2});
         //clean up the terminal
         menu.reset();
         //display the title
@@ -54,7 +56,7 @@ var createMenu = function(opts) {
         menu.write(utils.repeat('-', options.width) + '\n');
 
 
-        tasks.forEach(function(task, index) {
+        tasks.forEach(function(task) {
             menu.add(chalk.bold('»') + ' ' + task.name + utils.repeat(' ', options.width - utils.length(task.name) - 3));
         });
 
@@ -93,12 +95,12 @@ var createMenu = function(opts) {
             var runner = taskMgr.run(task.id);
 
             runner.on('finish', function() {
-                logger.success('finish: ', task.name);
+                options.onFinish(task.id, task.name);
                 process.stdin.end();
             });
 
             runner.on('error', function(err) {
-                logger.error('failed: ', err);
+                options.onError(task.id, task.name, err);
                 exit(0);
             });
 

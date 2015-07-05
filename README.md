@@ -15,7 +15,7 @@ Terminal-task-runner is a node UI framework for task execution. Developer can on
 
 ## High-level overview ##
 
-`terminal-task-runner` is runner system with a lovely terminal UI. Which also provide some cool features to ease the way of implementing tasks. 
+`terminal-task-runner` is runner system with a lovely terminal UI. Which also provide some cool features to ease the way of implementing tasks.
 
 ## Installation ##
 
@@ -39,7 +39,7 @@ By doing above, you've created a very simple terminal menu as following:
 ![](https://raw.githubusercontent.com/leftstick/task-runner/master/docs/img/step01.png)
 
 [How to write your own task](./docs/how_to_write_task.md)
-> Welcome to play with the example as your skeleton. 
+> Welcome to play with the example as your skeleton.
 
 
 ## API ##
@@ -55,7 +55,7 @@ Options to pass to `createMenu`
 Type: `String`
 Default: `=====================`
 
-The title displayed on the top of the terminal ui. 
+The title displayed on the top of the terminal ui.
 
 #### options.subtitle
 Type: `String`
@@ -122,6 +122,16 @@ Type: `String`
 The preference file name will be used to store the information. For example: `.sero`
 
 [How to play with PreferenceMgr](./docs/how_to_use_prefmgr.md)
+
+#### options.onFinish
+Type: `Function`
+
+This `Function` gets called once a task is executed successfully with two parameters `id` and `name`
+
+#### options.onError
+Type: `Function`
+
+This `Function` gets called once a task is failed with three parameters `id`, `name` and `error`
 
 ### TaskRunner.Base ###
 

@@ -1,6 +1,6 @@
 {
   "name": "terminal-task-runner",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Task-runner is a node UI framework for task execution. Developer can only focus on the task logic.",
   "main": "index.js",
   "files": [
