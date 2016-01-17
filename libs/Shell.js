@@ -22,8 +22,8 @@ var Executor = function(cmds, variables, displayCmdItself) {
     if (this.variables) {
         this.commands = [];
         _.each(cmds, function(cmd) {
-            this.push(_.template(cmd)(self.variables));
-        }, this.commands);
+            self.commands.push(_.template(cmd)(self.variables));
+        });
     }
     this._run = function(defer) {
         var _this = this;
@@ -54,9 +54,7 @@ Executor.prototype.next = function() {
         console.log(cmd);
     }
 
-    var cp = exec(cmd, {
-        maxBuffer: 5000 * 1024
-    }, function(error) {
+    var cp = exec(cmd, {maxBuffer: 5000 * 1024}, function(error) {
         if (error) {
             d.reject(error);
             return;

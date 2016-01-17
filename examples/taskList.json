@@ -1,7 +1,7 @@
 [
-    "preftest",
-    "sayhello",
-    "shellexample",
-    "prompt",
-    "chinese"
+    "1_sayhello",
+    "2_shellexample",
+    "3_preftest",
+    "4_prompt",
+    "5_chinese"
 ]

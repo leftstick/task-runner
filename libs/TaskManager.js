@@ -30,10 +30,6 @@ var resolveTasks = function(files, deferred) {
         return task;
     });
 
-    _this._tasks = _.sortBy(_this._tasks, function(task) {
-        return task.position;
-    });
-
     deferred.resolve(_this._tasks);
 };
 

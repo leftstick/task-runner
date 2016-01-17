@@ -2,9 +2,12 @@
 var path = require('path');
 var chalk = require('chalk');
 var os = require('os');
-var colorsTmpl = require('colors-tmpl');
+var marked = require('marked');
+var TerminalRenderer = require('marked-terminal');
 var fs = require('fs');
 var Q = require('q');
+
+marked.setOptions({renderer: new TerminalRenderer()});
 
 var convertInput = function(parameters) {
     var args = Array.prototype.slice.call(parameters);
@@ -12,7 +15,7 @@ var convertInput = function(parameters) {
         if (typeof value === 'object') {
             try {
                 return JSON.stringify(value);
-            } catch ( e ) {
+            } catch (e) {
                 return value.toString();
             }
         }
@@ -73,19 +76,9 @@ var Utils = {
         }
     },
     printFile: function(filePath) {
-        var contents;
-        try {
-            contents = fs.readFileSync(filePath, {
-                encoding: 'utf8'
-            });
-
-            contents = colorsTmpl(contents);
-
-            console.log(contents);
-        } catch ( e ) {
-            throw e;
-        }
-
+        console.log(marked(fs.readFileSync(filePath, {
+            encoding: 'utf8'
+        })));
     },
     deferred: function() {
         var deferred = Q.defer();

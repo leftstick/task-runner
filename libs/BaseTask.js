@@ -32,7 +32,6 @@ BaseTask.prototype.position = 0;
 BaseTask.prototype.validateMandatory = function() {
     checkOpts(this, 'id');
     checkOpts(this, 'name');
-    checkOpts(this, 'position');
 };
 
 BaseTask.prototype.get = function(key, defaultValue) {

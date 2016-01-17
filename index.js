@@ -45,7 +45,11 @@ var createMenu = function(opts) {
 
 
     taskMgr.getTaskList().success(function(tasks) {
-        var menu = termianlMenu({width: options.width, x: 3, y: 2});
+        var menu = termianlMenu({
+            width: options.width,
+            x: 3,
+            y: 2
+        });
         //clean up the terminal
         menu.reset();
         //display the title
@@ -126,6 +130,7 @@ var createMenu = function(opts) {
 var TaskRunner = {
     Base: BaseTask,
     logger: logger,
+    printFile: utils.printFile,
     createMenu: createMenu,
     shell: Shell,
     Q: Q
