@@ -3,6 +3,8 @@ terminal-task-runner
 [![NPM version][npm-image]][npm-url]
 ![][david-url]
 ![][travis-url]
+![][dt-url]
+![][license-url]
 
 
 > Terminal task execution system
@@ -11,7 +13,7 @@ terminal-task-runner
 
 Terminal-task-runner is a node UI framework for task execution. Developer can only focus on the task logic. Framework will generate the terminal menu for you.
 
-**terminal-task-runner** is now used by [sero-cli](https://github.com/leftstick/Sero-cli), [modou-terminal-controller](https://github.com/leftstick/modou-terminal-controller)
+**terminal-task-runner** is now used by [sero-cli](https://github.com/leftstick/Sero-cli), [modou-terminal-controller](https://github.com/leftstick/modou-terminal-controller), [fe-interview](https://github.com/leftstick/fe-interview)
 
 ## High-level overview ##
 
@@ -215,3 +217,5 @@ new Shell(['ls -l *<%= suffix %>'], {
 [npm-image]: https://badge.fury.io/js/terminal-task-runner.png
 [david-url]:https://david-dm.org/leftstick/task-runner.png
 [travis-url]:https://api.travis-ci.org/leftstick/task-runner.svg?branch=master
+[dt-url]:https://img.shields.io/npm/dt/task-runner.svg
+[license-url]:https://img.shields.io/npm/l/task-runner.svg
